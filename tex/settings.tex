@@ -1,0 +1,251 @@
+% %%%%% KOMA report %%%% - ausglagert in root
+% \documentclass[
+%   paper=a4,
+%   fontsize=12pt
+% ]{scrreprt}
+
+
+%%%%% KOMA hack %%%%%
+% da das KOMA Skript einen Fehler ausgibt da irgendwas mit floar@addtolist böse ist - macht dass der fahler ignoriert wird ?
+% https://tex.stackexchange.com/questions/51867/koma-warning-about-toc
+\usepackage{scrhack} 
+
+%%%%% KOMA Hierarchie scrreprt %%%%%
+% \chapter[short version ]{heading }
+% \section[short version ]{heading }
+% \subsection[short version ]{heading }
+% \subsubsection[short version ]{heading }
+% \paragraph[short version ]{heading }
+% \subparagraph[short version ]{heading }
+
+\usepackage[ngerman]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}        %https://tex.stackexchange.com/questions/4268/inputenc-error-unicode-char-u8-error-while-trying-to-write-a-degree-symbol
+\usepackage{textcomp}           %https://tex.stackexchange.com/questions/4268/inputenc-error-unicode-char-u8-error-while-trying-to-write-a-degree-symbol
+\usepackage{gensymb}
+
+%%%% TABELLEN Überschriften %%%%%
+\usepackage[
+  size     = footnotesize,
+  nooneline,
+  format   = plain,
+%   labelsep = period
+]{caption}  % <=== NEU
+% captions für table und figure definieren
+% https://tex.stackexchange.com/questions/186228/2-different-captions-for-tables-and-figures
+\captionsetup[figure]{labelsep = quad}
+\captionsetup[table]{labelsep = newline}
+
+%%%%% LINKS %%%%%
+% macht links im ganzen Dokument nötig
+% http://www.ctan.org/pkg/hyperref
+% ABHÄNGIG
+%       biblatex
+% https://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Customizationl
+\usepackage[
+  colorlinks=true,
+%   hidelinks, %printig
+  linkcolor=red,
+  urlcolor=blue
+]{hyperref}
+
+%%%%% ZITATE Anführungszeichen %%%%%
+% Anführungszeichen sind jetzt einheilich
+% https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_Anf%C3%BChrungszeichen
+% http://www.ctan.org/pkg/csquotes
+\usepackage[
+  babel,
+  german=quotes
+]{csquotes}
+
+%%%%% ZITATE Spezifikation und APA style %%%%%
+\usepackage[
+  backend=biber,        %use biber
+  style=apa,            %use biblatex-apa 
+  sortcites=true,       % sortiere bei mehrfachen Zitationen 
+  sorting=nyt,          %sortiere das Literaturverzeichnis nyt Sort by name, year, title.
+  hyperref=true,        % benutzt paket hyperref und macht dass links links sind - erkennt auch doi ^^
+  backref=true,         % macht dass refferenzen verlinkt werden also man lustig im dokument rumspringen kann
+ % date=iso8601          %
+  alldates=iso8601      % nachteil alle datum dineger werden im litertaturverzeichnisageben also was vorher 2014 wer ist jetzt 2014-02 wenn das angegeben war 
+]{biblatex}
+
+% & Der APA stil schereibt dafault vor, dass Titel komplett klein geschrieben werden - da das aber quatsch isf für deutsche titel müssen alle titel die groß und kleinschreibung erhalten sollen in {{}} eingefasst werden - es ist auch möglich z.B. bei Eigennamen nur den buchstaben in {} zuetzten
+%
+% Beispiel:
+%   title = {Alle meine Entchen} -> Alle meine entchen
+%   title = {{Alle meine Entchen}} -> Alle meine Entchen
+%   title = {Alle meine {E}ntchen} -> Alle meine Entchen
+
+%%%%% ???? %%%%%
+%http://www.golatex.de/biblatex-apa-undefinded-mkbibdateapalongextra-t9943.html
+\DeclareLanguageMapping{german}{german-apa} 
+
+
+% et al
+\DefineBibliographyStrings{ngerman}{
+   andothers = {{et\,al\adddot}},            
+} 
+
+
+% Silbentrennung wenn möglich vermeiden
+\sloppy
+
+% Hurenkinder und Schusterjungen verhindern
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty=10000
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@makechapterhead}{50\p@}{25pt}{}{}
+\patchcmd{\@makeschapterhead}{50\p@}{25pt}{}{}
+\makeatother
+
+
+%Tabellen
+\usepackage{longtable}
+\usepackage{booktabs,tabularx} % tabularx ersetze l c r bei tabellen durch X - macht dann fancy automatischen Zeilenumbruch
+\usepackage{ctable} % needed for \cmidrule{}
+\usepackage{multirow} % needed for \multirow{}
+\newcommand{\head}[1]{\textnormal{\textbf{#1}}} %zusatzbefahl macht nur dass die entsprechende zeile fett ist (nach apa)
+
+
+
+\usepackage{listings}
+
+
+\usepackage{graphicx}
+
+%tabellenmagie
+% https://tex.stackexchange.com/questions/192186/given-a-3x4-table-of-images-how-do-i-make-all-the-images-the-same-size-and-remo#192200
+\newcommand{\x}{0.05}
+\newcommand\ig[1][]{\includegraphics[width= \x\linewidth, height = \x\linewidth,keepaspectratio=true,#1]}
+
+
+\usepackage{framed}
+
+%kapiteweise nummerierung
+% \usepackage{amsmath}
+\usepackage{mathtools}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+
+
+%math symbols
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%greek itallic
+% https://tex.stackexchange.com/questions/4610/package-for-changing-font-with-each-letter
+% \newfontfamily\fontg{TeX Gyre Termes}
+%% ==================> no working with pdf latex
+
+% https://tex.stackexchange.com/questions/30049/how-to-select-math-font-in-document
+% \setmathfont[version=termes]{TeX Gyre Termes Math}
+%% ==================> no working with pdf latex
+
+% \usepackage[uprightgreeks]{kpfonts} %coole schriftart
+%% ==================> der gesammte text wird anders
+
+% \usepackage[LGRgreek]{mathastext}
+%% ==================> everything is upright
+
+% https://tex.stackexchange.com/questions/12664/using-mathdesigns-math-font-with-another-text-font
+% \usepackage[
+%   greekfamily=bodoni,
+%   greekuppercase=upright,
+%   greeklowercase=upright
+% ]{mathdesign}
+%% ==================> no change at all
+
+\usepackage{upgreek}
+
+
+% \DeclareMathSymbol{\chi}{7}{operators}{1F}
+% \DeclareMathSymbol{\chi}{\mathord}{operators}{\chi}
+% \DeclareMathSymbol{\Delta}{\mathalpha}{operators}{1}
+% \DeclareMathSymbol{\Theta}{\mathalpha}{operators}{2}
+% \DeclareMathSymbol{\Lambda}{\mathalpha}{operators}{3}
+% \DeclareMathSymbol{\Xi}{\mathalpha}{operators}{4}
+% \DeclareMathSymbol{\Pi}{\mathalpha}{operators}{5}
+% \DeclareMathSymbol{\Sigma}{\mathalpha}{operators}{6}
+% \DeclareMathSymbol{\Upsilon}{\mathalpha}{operators}{7}
+% \DeclareMathSymbol{\Phi}{\mathalpha}{operators}{8}
+% \DeclareMathSymbol{\Psi}{\mathalpha}{operators}{9}
+% \DeclareMathSymbol{\Omega}{\mathalpha}{operators}{10}
+
+% \usepackage{fixmath} %macht dass \mathrm{} bei griechen funtzt
+
+
+\usepackage{longtable} %tabs mit seitenumbruch % geht nicht
+
+\usepackage{pdflscape} % seite kippen für tabelle
+
+%damit ° in math mode erkannt wird
+% https://tex.stackexchange.com/questions/84469/unicode-degree-symbol-%C2%B0-in-math-formulas-textdegree-invalid-in-math-mode
+%\usepackage{newunicodechar}
+%\newunicodechar{°}{\degree}
+
+\usepackage{array}
+\usepackage{url}
+
+%Pdfs einbinden
+\usepackage{pdfpages}
+
+
+
+\usepackage{geometry}
+% \graphicspath{ {./abb/} } % Pfad für die Bilder
+
+\geometry{a4paper,left=3cm, right=3cm, top=3.7cm, bottom=3.9cm, bindingoffset=0.2cm} % Vorgabe APA
+
+\linespread{1.25} % eineinhalb-facher Zeilenabstand
+
+%Kopfzeile
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt} %http://nw360.blogspot.de/2006/11/latex-headheight-is-too-small.html
+
+
+
+%hypothesen
+% http://tex.stackexchange.com/questions/100880/hypotheses-and-subhypotheses-with-ntheorem
+\usepackage[hyperref]{ntheorem}
+%\makeatletter
+  \theoremstyle{break}
+  \newtheorem{mainhyp}{Fragestellung}
+  \providecommand*{\mainhypautorefname}{Fragestellung}
+
+
+  \newtheorem{hyp}{Hypothese}
+  \providecommand*{\hypautorefname}{Hypothese} %sagt hyperref was es anzeigen soll
+  % use \autoref indead of thref (cause you don't want to use different refs)
+  % http://tex.stackexchange.com/questions/24568/autoref-names-messed-up-when-defining-certain-ntheorem-theoremstyles/24923#24923
+  
+%\makeatother
+
+%acronym usage
+\usepackage[
+  printonlyused,
+  withpage 
+]{acronym}
+
+\addtokomafont{disposition}{\rmfamily} %überschriften times
+
+
+
+\usepackage{lipsum} % um dummy text hinzuklatschen 
+
+
+
+\usepackage{afterpage}
+% (16:51:58) |Zz|: then try this \usepackage{afterpage}
+% (16:52:15) |Zz|: and then put \afterpage{\clearpage} just after that "big figure"
+% (16:52:27) |Zz|: it should appear in the next available page, instead at the end of the chapter
+% (16:52:34) |Zz|: and that will not disrupt the following figures
+% (16:52:41) |Zz|: repeat that trick for each "big figure"
+
+% für unter /labels
+\usepackage[list=true,listformat=simple]{subcaption}

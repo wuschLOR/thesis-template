@@ -1,0 +1,13 @@
+.directory
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.thm
+*.toc
+*.backup

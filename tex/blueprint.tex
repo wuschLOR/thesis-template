@@ -1,0 +1,206 @@
+\chapter{blueprint chapter}
+
+%\pagebreak
+
+\section{section}
+teyt teyt mininiu
+\subsection{subsection}
+
+\lipsum[1]
+
+\subsubsection{subsubsection}
+
+\paragraph{paragraph}
+
+\subparagraph{subparagraph}
+
+\section{citing}
+% Zitieren
+\begin{itemize}
+  \item autocite  \autocite {zongker_chicken_2006}
+  \item textcite  \textcite {zongker_chicken_2006}
+  \item parencite \parencite{zongker_chicken_2006}
+\end{itemize}
+
+immer parencite verwenden weil das halt teil vom apa paket is :)
+
+\section{figures}
+
+%Abbildungen (APA like)
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\linewidth,
+                   height=0.33\textheight,
+                   keepaspectratio=true]{cat.jpeg} 
+  %\captionsetup{labelsep=period}
+  \caption[Katze am Weihnachtsbaum (das steht im abbverzeichnis)]{
+    \textit{Katze am Weihnachtsbaum (Abbildungsbeschriftung)}
+    Alle weiteren Sätze
+    }
+  \label{fig:cat}
+\end{figure}
+
+\autoref{fig:cat} refferiert auf die grafik
+
+
+
+\section{tabels}
+
+%Tabellen (APA like)
+\begin{table}[tb]
+  \caption[das steht im tabverzeichnis]{\textit{Tabbeschriftung}}
+  \begin{flushleft}
+    \footnotesize
+    \centering
+    \begin{tabular}{ccccccc}
+      \toprule
+          & \multicolumn{2}{c}{T0} & \multicolumn{2}{c}{T1} & \multicolumn{2}{c}{T2}\\
+      \cmidrule(lr){2-7} 
+          & M    & SD   & M    & SD   & M    & SD   \\
+      \hline
+      Alle & 2.98 & 1.66 & 3.73 & 1.29 & 0.75 & 1.49 \\
+      \hline
+      KG   & 2.31 & 1.45 & 3.49 & 1.27 & 1.18 & 1.55 \\
+      EG   & 3.87 & 1.5  & 4.05 & 1.24 & 0.19 & 1.19 \\
+      \bottomrule
+    \end{tabular}
+  \end{flushleft}
+  \label{table:Zeug}
+\end{table}
+
+\section{hypothesen}
+\begin{hyp}[mit krassem Inhalt]
+\label{hyp:einleitung}
+The better the answer, the higher the score.
+\end{hyp}
+
+
+blabla itermetzo
+
+\autoref{hyp:einleitung} wurde super bestätigt lalalalalalala
+
+
+% \section{acronyms}
+% 
+% 
+% \ac{KDE} Gibt bei der ersten Verwendung die Langform mit der Abkürzung in Klammern aus, ab dann stets die Kurzform.
+% 
+% 
+% \acs{KDE} Gibt die Abkürzung aus.
+% 
+% 
+% \acf{KDE} Gibt die Langform und die Kurzform aus.
+% 
+% 
+% \acl{KDE} Gibt nur die Langform ohne die Kurzform aus.
+
+
+
+\section{crazy minipage or tabular or subcapition}
+\begin{figure}
+  \centering
+  \begin{tabular}{p{.45\textwidth}p{.45\textwidth}}
+      \includegraphics[width=\linewidth,
+                       height=0.33\textheight,
+                       keepaspectratio=true]{cat.jpeg} 
+      %\captionsetup{labelsep=period}
+      \caption[Katze am Weihnachtsbaum (das steht im abbverzeichnis)]{
+        \textit{Katze am Weihnachtsbaum (Abbildungsbeschriftung)}
+        Alle weiteren Sätze
+        }
+      \label{fig:cat2}
+    &
+      \includegraphics[width=\linewidth,
+                       height=0.33\textheight,
+                       keepaspectratio=true]{cat.jpeg} 
+      %\captionsetup{labelsep=period}
+      \caption[Katze am Weihnachtsbaum (das steht im abbverzeichnis)]{
+        \textit{Katze am Weihnachtsbaum (Abbildungsbeschriftung)}
+        Alle weiteren Sätze
+        }
+      \label{fig:cat3}
+    \\
+  \end{tabular}
+\end{figure}
+
+
+% \begin{figure}
+%   \centering
+%   \begin{tabular}{p{.45\textwidth}p{.45\textwidth}}
+%     &
+%     \\
+%   \end{tabular}
+% \end{figure}
+
+oder 
+
+\begin{figure}[htb]
+  \begin{minipage}[t]{0.45\linewidth}
+    \centering
+      \includegraphics[width=\linewidth,
+                       height=0.33\textheight,
+                       keepaspectratio=true]{cat.jpeg} 
+      %\captionsetup{labelsep=period}
+      \caption[Katze am Weihnachtsbaum (das steht im abbverzeichnis)]{
+        \textit{Katze am Weihnachtsbaum (Abbildungsbeschriftung)}
+        Alle weiteren Sätze
+        }
+      \label{fig:cat4}
+  \end{minipage}
+  \hspace{0.05\linewidth}
+  \begin{minipage}[t]{0.45\linewidth}
+    \centering
+      \includegraphics[width=\linewidth,
+                       height=0.33\textheight,
+                       keepaspectratio=true]{cat.jpeg} 
+      %\captionsetup{labelsep=period}
+      \caption[Katze am Weihnachtsbaum (das steht im abbverzeichnis)]{
+        \textit{Katze am Weihnachtsbaum (Abbildungsbeschriftung)}
+        Alle weiteren Sätze
+        }
+      \label{fig:cat5}
+  \end{minipage}
+%   \par 
+%   \begin{minipage}[t]{0.45\linewidth}
+% 
+%   \end{minipage}
+%   \hspace{0.05\linewidth}
+%   \begin{minipage}[t]{0.45\linewidth}
+% 
+%   \end{minipage}
+\end{figure}
+
+
+oder
+
+
+
+\begin{figure}
+  \label{fig:subfig_main}
+  \begin{subfigure}[c]{0.45\linewidth}
+    \label{fig:subfig_1}
+    \includegraphics[height=0.33\textheight,
+                     keepaspectratio=true]{cat}
+    \subcaption{Subfigure Bild Nr. 1}
+  \end{subfigure}
+  \begin{subfigure}[c]{0.45\linewidth}
+    \label{fig:subfig_2}
+    \includegraphics[height=0.33\textheight,
+                     keepaspectratio=true]{cat}
+    \subcaption{Subfigure Bild Nr. 2}
+  \end{subfigure}
+  \caption{Zwei Bilder mit Subfigure nebeneinander}
+\end{figure}
+
+
+
+
+wenn zeit ist das ganze auch mal mit subfloats machen 
+\url{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Subfloats}{party party tako borito}
+
+GROUP1 $ M=2.671, SD=1.065 $
+GROUP2 $ M=4.346, SD=1.705 $
+T-TEST $ t(14)=-3.072,p<.01,d=0.793 $
+
+
+kijfdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \autoref{fig:subfig_2} \ref{fig:subfig_2} \autoref{fig:subfig_main} \ref{fig:subfig_main}
